@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+
+    <changeSet id="1" author="Oleg Rosynskyi">
+        <createTable tableName="_user">
+            <column name="_user_id" type="bigint">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="_first_name" type="varchar(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="_second_name" type="varchar(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="_patronymic" type="varchar(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="_email" type="varchar(300)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="_password" type="varchar(300)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="2" author="Oleg Rosynskyi">
+        <createTable tableName="_role">
+            <column name="_role_id" type="bigint">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="_role_name" type="varchar(20)"/>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="3" author="Oleg Rosynskyi">
+        <createTable tableName="_user_role">
+            <column name="_user_id" type="bigint">
+                <constraints foreignKeyName="_user_id_FK" referencedColumnNames="_user_id" references="_user"/>
+            </column>
+            <column name="_role_id" type="bigint">
+                <constraints foreignKeyName="_role_id_FK" referencedColumnNames="_role_id" references="_role"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+</databaseChangeLog>
